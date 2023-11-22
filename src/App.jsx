@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react';
 
-function App() {
-  const [count, setCount] = useState(0)
+const CounterDisplay = ({ count }) => {
+  return <p className="text-4xl m-8">Count: {count}</p>;
+};
+
+const Counter = () => {
+  const [count, setCount] = useState(0);
+
+  const handleIncrement = () => {
+    setCount(count + 1);
+  };
+
+  const handleDecrement = () => {
+    if (count > 0) {
+      setCount(count - 1);
+    }
+  };
+
+  const handleReset = () => {
+    setCount(0);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <> <div className='flex justify-center bg-gradient-to-r from-blue-500 to-transparent h-screen '>
+      <div className="text-center w-1/2 mt-52 h-56 rounded bg-pink-200">
+        <h1 className="text-3xl font-bold mb-4 mt-2">Counter Component</h1>
+        <CounterDisplay count={count} />
+        <button
+          onClick={handleIncrement}
+          className="bg-green-500  text-white px-8 py-2 rounded mr-2 mt-6"
+        >
+          Increment
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        <button
+          onClick={handleDecrement}
+          className="bg-red-500 text-white px-8 py-2 rounded mr-2"
+        >
+          Decrement
+        </button>
+        <button
+          onClick={handleReset}
+          className="bg-blue-500 text-white px-8 py-2 rounded"
+        >
+          Reset
+        </button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    </div>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default Counter;
